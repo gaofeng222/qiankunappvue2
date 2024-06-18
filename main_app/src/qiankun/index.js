@@ -57,4 +57,9 @@ if (!window.qiankunStarted) {
 console.log("start qiankun");
 console.log(window.__POWERED_BY_QIANKUN__, "window.__POWERED_BY_QIANKUN__");
 // 启动 qiankun
-start();
+start({
+  sandbox: {
+    strictStyleIsolation: true, //隔离主子应用样式
+    // experimentalStyleIsolation: true, //   开启沙箱模式,实验性方案
+  },
+});

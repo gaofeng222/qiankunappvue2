@@ -1,0 +1,1 @@
+export const CHANGE_COLLPASE = "CHANGE_COLLPASE";
