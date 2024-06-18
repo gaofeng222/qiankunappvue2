@@ -16,7 +16,7 @@ export default {
     },
   },
   created() {
-    console.log("app created", this.$store.state.user);
+    console.log("app created", this.$store.state.subUser);
   },
 };
 </script>

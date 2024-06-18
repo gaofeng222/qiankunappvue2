@@ -1,11 +1,11 @@
 import { registerMicroApps, start, initGlobalState } from "qiankun";
-
+import store from "../store";
 if (!window.qiankunStarted) {
   window.qiankunStarted = true;
 
   let state = {
     accessToken: "",
-    userInfo: {},
+    userInfo: store.state.User.userInfo,
   };
 
   const actions = initGlobalState(state);
@@ -22,12 +22,7 @@ if (!window.qiankunStarted) {
       container: "#container",
       activeRule: "/sub_app01",
       props: {
-        userInfo: localStorage.getItem("userInfo") || {
-          name: "qiankun",
-          age: 18,
-          sex: "男",
-          address: "北京",
-        },
+        userInfo: localStorage.getItem("userInfo") || state.userInfo,
         accessToken:
           localStorage.getItem("accessToken") ||
           "xxxx-aaaaa-ssss-s-s-ss-s-s--sub01",
@@ -40,12 +35,7 @@ if (!window.qiankunStarted) {
       container: "#container",
       activeRule: "/sub_app02",
       props: {
-        userInfo: localStorage.getItem("userInfo") || {
-          name: "qiankun",
-          age: 18,
-          sex: "男",
-          address: "北京",
-        },
+        userInfo: localStorage.getItem("userInfo") || state.userInfo,
         accessToken:
           localStorage.getItem("accessToken") ||
           "xxxx-aaaaa-ssss-s-s-ss-s-s-cccccccccc-sub02",

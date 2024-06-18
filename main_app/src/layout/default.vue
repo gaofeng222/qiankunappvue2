@@ -74,7 +74,7 @@
             <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
             <el-dropdown class="top-info">
               <span class="el-dropdown-link">
-                欢迎你,管理员
+                欢迎你,{{ userInfo.name }}
                 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
@@ -118,7 +118,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["isCollpase"]),
+    ...mapGetters(["isCollpase", "userInfo"]),
   },
   methods: {
     ...mapActions(["changeCollpase"]),

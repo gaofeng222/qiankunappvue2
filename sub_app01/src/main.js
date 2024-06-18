@@ -12,7 +12,7 @@ let instance = null;
 function render(props = {}) {
   const { container, userInfo } = props;
   //动态注册module
-  store.registerModule("user", {
+  store.registerModule("subUser", {
     state: {
       userInfo,
     },

@@ -14,5 +14,10 @@ export default {
   components: {
     HelloWorld,
   },
+  mounted() {
+    window.addEventListener("popstate", (event) => {
+      console.log("🚀 ~ window.addEventListener ~ event:", event);
+    });
+  },
 };
 </script>
