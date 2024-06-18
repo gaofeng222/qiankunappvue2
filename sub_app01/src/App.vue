@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav>
+    <nav v-if="!isQianKun">
       sub_app01
       <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
@@ -8,6 +8,18 @@
     <router-view />
   </div>
 </template>
+<script>
+export default {
+  computed: {
+    isQianKun() {
+      return window.__POWERED_BY_QIANKUN__;
+    },
+  },
+  created() {
+    console.log("app created", this.$store.state.user);
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

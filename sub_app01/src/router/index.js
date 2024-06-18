@@ -24,7 +24,7 @@ const routes = [
 const router = new VueRouter({
   routes,
   mode: "history",
-  base: window.__POWERED_BY_QIANKUN__ ? "/sub_app01" : "./",
+  base: window.__POWERED_BY_QIANKUN__ ? "/sub_app01/" : "./",
 });
 
 export default router;
