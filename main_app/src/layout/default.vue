@@ -2,13 +2,14 @@
   <el-container>
     <el-aside :width="!isCollpase?'200px':'55px'">
       <el-menu
-        default-active="/"
+        :default-active="activeRoute"
         class="el-menu-vertical-demo"
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b"
         router
         :collapse="isCollpase"
+        unique-opened
       >
         <el-menu-item index="/">
           <i class="el-icon-menu"></i>
@@ -72,14 +73,14 @@
           </div>
           <div class="right">
             <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
-            <el-dropdown class="top-info">
+            <el-dropdown class="top-info" @command="handleCommand">
               <span class="el-dropdown-link">
                 欢迎你,{{ userInfo.name }}
                 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>个人信息</el-dropdown-item>
-                <el-dropdown-item>退出登录</el-dropdown-item>
+                <el-dropdown-item command="logout">退出登录</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </div>
@@ -100,17 +101,20 @@
 <script>
 import { Breadcrumb } from "element-ui";
 import { mapGetters, mapActions } from "vuex";
+import actions from "../shared/actions";
 export default {
   data() {
     return {
       breadcrumbLists: [],
+      activeRoute: "/sub_app02",
     };
   },
   watch: {
     $route: {
       handler(newRoute) {
-        console.log("🚀 ~ $route ~ newRoute:", newRoute);
         if (newRoute) {
+          console.log("🚀 ~ handler ~ newRoute:", newRoute);
+          this.activeRoute = newRoute.path;
           this.breadcrumbLists = newRoute.matched;
         }
       },
@@ -121,9 +125,17 @@ export default {
     ...mapGetters(["isCollpase", "userInfo"]),
   },
   methods: {
-    ...mapActions(["changeCollpase"]),
+    ...mapActions(["changeCollpase", "setUserInfo"]),
     handleToggleSide(state) {
       this.changeCollpase(state);
+    },
+    handleCommand(command) {
+      if (command === "logout") {
+        const userInfo = {};
+        localStorage.setItem("userInfo", "");
+        this.setUserInfo(userInfo);
+        actions.setGlobalState({ userInfo });
+      }
     },
   },
 };
