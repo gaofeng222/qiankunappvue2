@@ -1,7 +1,6 @@
 <template>
   <div class="about">
-    sub——01
-    <h1>This is an about page</h1>
+    <h1>This is an sub_app01 about page</h1>
   </div>
 </template>
 
